@@ -1,0 +1,673 @@
+//WARNA
+$primary-color: #04a3df;
+$primary-color-d5: #005270;
+$primary-soft-color1: #04a3df;
+$background-primary-color: #e1ffcb55;
+
+$background-transparant-color: #fff5;
+
+$accent-color: #f7941d;
+$accent-color2: #db8400;
+
+$danger-color: #f72828;
+$danger-soft-color1: #be2d2d;
+$background-danger-color: #ffcece;
+$shadow-danger-color: #f7282820;
+
+$success-color: #16ca5b;
+$success-soft-color1: #1fa552;
+$background-success-color: #d0ffce;
+$shadow-success-color: #28f77720;
+
+$shadow-accent-color: #a596eb;
+$shadow-primary-color: #4e28f766;
+$background-color: #ddd;
+$panel-color: #fff;
+$active-color: #fff;
+$font-grey1: #333;
+$font-grey2: #555;
+$font-grey3: #777;
+$font-grey4: #999;
+$font-grey5: #aaa;
+$font-grey6: #ddd;
+$font-grey7: #f1f1f1;
+
+//UKURAN
+$panel-login: 450px;
+$lebar-logo: 150px;
+
+$tinggi-navbar: 60px;
+
+//SHADOW
+body {
+    font-family: "Nunito";
+}
+
+//GLOBAL
+
+.sub {
+    .hero {
+        height: 50vh;
+    }
+
+    .content-image {
+        height: 50vh;
+        .image-as-bg {
+            height: 50vh;
+        }
+    }
+}
+
+.sub-hubungi-kami{
+    .judul{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $accent-color;
+    }
+
+    .info{
+        margin-bottom: 0;
+    }
+}
+//HERO
+.hero {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    z-index: 6;
+    text-align: center;
+
+    .title {
+        font-size: 5rem;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .sub {
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .isi {
+        font-size: 1rem;
+        color: white;
+        margin-bottom: 0;
+    }
+}
+
+.content-image {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+
+    .image-as-bg {
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+        z-index: 1;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        animation: zoom-in-zoom-out 5s ease;
+        animation-fill-mode: forwards;
+    }
+}
+
+.sub-hero {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+    z-index: 6;
+    text-align: center;
+
+    .title {
+        font-size: 5rem;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .sub {
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .isi {
+        font-size: 1rem;
+        color: white;
+        margin-bottom: 0;
+    }
+}
+
+.sub-content-image {
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+
+    .image-as-bg {
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        z-index: 1;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        animation: zoom-in-zoom-out 5s ease;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes zoom-in-zoom-out {
+    /* 0% {
+        transform: scale(1, 1);
+    } */
+    100% {
+        transform: scale(1.5, 1.5);
+    }
+}
+p {
+    &.invert {
+        color: #ccc;
+    }
+}
+.container {
+    .sub-judul-content {
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        color: grey;
+        margin-top: 50px;
+        margin-bottom: 0;
+
+        &.invert {
+            color: #ccc;
+        }
+    }
+
+    .judul-content {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        color: $primary-color;
+        margin: 0;
+        &.invert {
+            color: $accent-color;
+        }
+    }
+}
+
+.hide-when-scrolled {
+    transition: max-height 0.3s ease-in;
+    opacity: 0;
+    visibility: 0.3;
+    max-height: 100px;
+    opacity: 1;
+    z-index: 1;
+}
+
+.navbar.fixed-top.scrolled {
+    .hide-when-scrolled {
+        max-height: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+.contact {
+    position: relative;
+    width: 100%;
+    min-height: 150px;
+    background-color: $primary-color-d5;
+    z-index: 2;
+    padding: 30px 0;
+
+    .icon {
+        height: 50px;
+    }
+
+    .judul {
+        color: white;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .isi {
+        color: #eee;
+        margin: 0;
+        font-weight: 400;
+    }
+}
+
+.layanan-kami {
+    background-color: white;
+    min-height: 300px;
+
+    .item {
+        // height: 350px;
+        cursor: pointer;
+        height: 22em;
+        display: block;
+        position: relative;
+        margin-bottom: 2em;
+        overflow: hidden;
+        transition: all 0.5s;
+
+        .cover-black {
+            position: absolute;
+            display: block;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            right: 0;
+            bottom: 0;
+            background-color: #0005 !important;
+            transition: all 0.5s;
+            padding-bottom: 20px;
+
+            i {
+                font-weight: bold;
+                color: white;
+                font-size: 2rem;
+            }
+
+            p {
+                font-weight: bold;
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            &:hover {
+                background-color: #0009 !important;
+                padding-bottom: 50px;
+            }
+
+            &:hover ~ img {
+                transform: scale(1.5, 1.5);
+                // animation: zoom-in-zoom-out 0.5s ease;
+                // animation-fill-mode: forwards;
+                transition: all 0.5s;
+            }
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: 1;
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 0.5s;
+        }
+    }
+}
+
+.tentang-kami {
+    background-color: $primary-color-d5;
+
+    .icon {
+        height: 50px;
+    }
+
+    .judul {
+        color: white;
+        margin: 0;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .isi {
+        color: #ccc;
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+.dapatkan-penawaran {
+    background-color: white;
+    position: relative;
+    min-height: 80vh;
+
+    .image-as-bg {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        // z-index: 1;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .mbake {
+        height: 80%;
+        z-index: 1;
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 100px;
+        -webkit-filter: drop-shadow(-5px -5px 5px #222);
+        filter: drop-shadow(-5px -5px 5px #222);
+    }
+
+    .form-penawan {
+        padding: 50px;
+        width: 30%;
+        z-index: 1;
+        position: absolute;
+        display: block;
+        // background-color: white;
+        border-radius: 10px;
+        top: 10%;
+        right: 20%;
+        // box-shadow: -5px -5px 5px #0005;
+        min-height: 300px;
+    }
+
+    .wa {
+        position: relative;
+        width: 100%;
+
+        -webkit-filter: drop-shadow(5px 5px 5px #0004);
+        filter: drop-shadow(5px 5px 5px #0004);
+    }
+
+    .judul-content {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+        text-shadow: 5px 5px 5px #000a;
+    }
+}
+
+.artikel-terbaru {
+    .item {
+        // height: 350px;
+        cursor: pointer;
+        min-height: 22em;
+        display: block;
+        position: relative;
+        margin-bottom: 2em;
+        overflow: hidden;
+        transition: all 0.5s;
+
+        &:hover {
+            box-shadow: 1px 1px 20px #0004;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: 1;
+            position: relative;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 0.5s;
+            // margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 20px;
+
+            .judul {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.2rem;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            .isi {
+                text-align: justify;
+                // font-weight: bold;
+                // font-size: 0.8rem;
+                color: #333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 4; /* number of lines to show */
+                line-clamp: 4;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+}
+
+.karir {
+    position: relative;
+    width: 100%;
+    min-height: 150px;
+    background-color: $primary-color-d5;
+    z-index: 2;
+    padding: 30px 0;
+
+    .judul {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .isi {
+        font-size: 1.2rem;
+        color: #ddd;
+        // font-weight: bold;
+        text-align: center;
+    }
+
+    .button {
+        all: unset;
+        position: relative;
+        padding: 10px 30px;
+        border-radius: 50px;
+        background-color: white;
+        color: $accent-color;
+        font-weight: bold;
+        transition: box-shadow 0.3s ease-in;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 5px 5px 5px #0005;
+        }
+    }
+}
+
+.footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: white;
+
+    .logo {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+
+    .keterangan {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .judul {
+        font-weight: bold;
+    }
+
+    .info {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .menu-icon {
+        color: #666;
+        font-size: 1.2rem;
+    }
+
+    .navigasi {
+        all: unset;
+        cursor: pointer;
+        display: block;
+        color: #666;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}
+
+.bottom-footer {
+    a {
+        height: 200px;
+        text-align: center;
+    }
+    background-color: $primary-color-d5;
+}
+
+.facebookbutton {
+    border-radius: 6px;
+    padding: 0.7em;
+    border: 1px solid #0001;
+    /* margin-right: 1em; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #014373;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.facebookbutton:hover {
+    background-image: linear-gradient(30deg, #3b5998, #5d7bba);
+    color: white;
+}
+
+.instagrambutton {
+    border-radius: 6px;
+    padding: 0.7em;
+    border: 1px solid #0001;
+    /* margin-right: 1em; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #014373;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    margin-right: 0;
+}
+
+.instagrambutton:hover {
+    background-image: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+    );
+    color: white;
+}
+
+.navitem {
+    all: unset;
+    color: white;
+    font-weight: 700;
+    // font-size: 1rem;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+    padding: 5px;
+    // border-radius: 5px;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: $background-transparant-color;
+        color: white !important;
+    }
+}
+
+.sosmed-icon-nav {
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: $background-transparant-color;
+
+        &.fb {
+            color: blue;
+        }
+        &.ig {
+            color: rgb(179, 65, 179);
+        }
+        &.tw {
+            color: rgb(0, 204, 255);
+        }
+        &.wa {
+            color: rgb(2, 202, 62);
+        }
+    }
+}
+
+//FORM
+input.form-control {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

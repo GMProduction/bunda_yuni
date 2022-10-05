@@ -1,0 +1,561 @@
+body {
+  font-family: "Nunito";
+}
+
+.sub .hero {
+  height: 50vh;
+}
+.sub .content-image {
+  height: 50vh;
+}
+.sub .content-image .image-as-bg {
+  height: 50vh;
+}
+
+.sub-hubungi-kami .judul {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f7941d;
+}
+.sub-hubungi-kami .info {
+  margin-bottom: 0;
+}
+
+.hero {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  z-index: 6;
+  text-align: center;
+}
+.hero .title {
+  font-size: 5rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.hero .sub {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0;
+}
+.hero .isi {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0;
+}
+
+.content-image {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+.content-image .image-as-bg {
+  height: 100vh;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-animation: zoom-in-zoom-out 5s ease;
+          animation: zoom-in-zoom-out 5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.sub-hero {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  width: 100%;
+  z-index: 6;
+  text-align: center;
+}
+.sub-hero .title {
+  font-size: 5rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.sub-hero .sub {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0;
+}
+.sub-hero .isi {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0;
+}
+
+.sub-content-image {
+  height: 50vh;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+.sub-content-image .image-as-bg {
+  height: 50vh;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-animation: zoom-in-zoom-out 5s ease;
+          animation: zoom-in-zoom-out 5s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes zoom-in-zoom-out {
+  /* 0% {
+      transform: scale(1, 1);
+  } */
+  100% {
+    transform: scale(1.5, 1.5);
+  }
+}
+
+@keyframes zoom-in-zoom-out {
+  /* 0% {
+      transform: scale(1, 1);
+  } */
+  100% {
+    transform: scale(1.5, 1.5);
+  }
+}
+p.invert {
+  color: #ccc;
+}
+
+.container .sub-judul-content {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: grey;
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+.container .sub-judul-content.invert {
+  color: #ccc;
+}
+.container .judul-content {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #04a3df;
+  margin: 0;
+}
+.container .judul-content.invert {
+  color: #f7941d;
+}
+
+.hide-when-scrolled {
+  transition: max-height 0.3s ease-in;
+  opacity: 0;
+  visibility: 0.3;
+  max-height: 100px;
+  opacity: 1;
+  z-index: 1;
+}
+
+.navbar.fixed-top.scrolled .hide-when-scrolled {
+  max-height: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.contact {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  background-color: #005270;
+  z-index: 2;
+  padding: 30px 0;
+}
+.contact .icon {
+  height: 50px;
+}
+.contact .judul {
+  color: white;
+  margin: 0;
+  font-weight: 500;
+}
+.contact .isi {
+  color: #eee;
+  margin: 0;
+  font-weight: 400;
+}
+
+.layanan-kami {
+  background-color: white;
+  min-height: 300px;
+}
+.layanan-kami .item {
+  cursor: pointer;
+  height: 22em;
+  display: block;
+  position: relative;
+  margin-bottom: 2em;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.layanan-kami .item .cover-black {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3333333333) !important;
+  transition: all 0.5s;
+  padding-bottom: 20px;
+}
+.layanan-kami .item .cover-black i {
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+}
+.layanan-kami .item .cover-black p {
+  font-weight: bold;
+  color: white;
+  font-size: 1.5rem;
+}
+.layanan-kami .item .cover-black:hover {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  padding-bottom: 50px;
+}
+.layanan-kami .item .cover-black:hover ~ img {
+  transform: scale(1.5, 1.5);
+  transition: all 0.5s;
+}
+.layanan-kami .item img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.5s;
+}
+
+.tentang-kami {
+  background-color: #005270;
+}
+.tentang-kami .icon {
+  height: 50px;
+}
+.tentang-kami .judul {
+  color: white;
+  margin: 0;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.tentang-kami .isi {
+  color: #ccc;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dapatkan-penawaran {
+  background-color: white;
+  position: relative;
+  min-height: 80vh;
+}
+.dapatkan-penawaran .image-as-bg {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.dapatkan-penawaran .mbake {
+  height: 80%;
+  z-index: 1;
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 100px;
+  filter: drop-shadow(-5px -5px 5px #222);
+}
+.dapatkan-penawaran .form-penawan {
+  padding: 50px;
+  width: 30%;
+  z-index: 1;
+  position: absolute;
+  display: block;
+  border-radius: 10px;
+  top: 10%;
+  right: 20%;
+  min-height: 300px;
+}
+.dapatkan-penawaran .wa {
+  position: relative;
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2666666667));
+}
+.dapatkan-penawaran .judul-content {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6666666667);
+}
+
+.artikel-terbaru .item {
+  cursor: pointer;
+  min-height: 22em;
+  display: block;
+  position: relative;
+  margin-bottom: 2em;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.artikel-terbaru .item:hover {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2666666667);
+}
+.artikel-terbaru .item img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+  position: relative;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.5s;
+}
+.artikel-terbaru .item .content {
+  padding: 20px;
+}
+.artikel-terbaru .item .content .judul {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.artikel-terbaru .item .content .isi {
+  text-align: justify;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.karir {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  background-color: #005270;
+  z-index: 2;
+  padding: 30px 0;
+}
+.karir .judul {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.karir .isi {
+  font-size: 1.2rem;
+  color: #ddd;
+  text-align: center;
+}
+.karir .button {
+  all: unset;
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 50px;
+  background-color: white;
+  color: #f7941d;
+  font-weight: bold;
+  transition: box-shadow 0.3s ease-in;
+  cursor: pointer;
+}
+.karir .button:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3333333333);
+}
+
+.footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: white;
+}
+.footer .logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+.footer .keterangan {
+  color: #666;
+  font-size: 0.9rem;
+}
+.footer .judul {
+  font-weight: bold;
+}
+.footer .info {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+.footer .menu-icon {
+  color: #666;
+  font-size: 1.2rem;
+}
+.footer .navigasi {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.footer .navigasi:hover {
+  color: #04a3df;
+}
+
+.bottom-footer {
+  background-color: #005270;
+}
+.bottom-footer a {
+  height: 200px;
+  text-align: center;
+}
+
+.facebookbutton {
+  border-radius: 6px;
+  padding: 0.7em;
+  border: 1px solid rgba(0, 0, 0, 0.0666666667);
+  /* margin-right: 1em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #014373;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.facebookbutton:hover {
+  background-image: linear-gradient(30deg, #3b5998, #5d7bba);
+  color: white;
+}
+
+.instagrambutton {
+  border-radius: 6px;
+  padding: 0.7em;
+  border: 1px solid rgba(0, 0, 0, 0.0666666667);
+  /* margin-right: 1em; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #014373;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  margin-right: 0;
+}
+
+.instagrambutton:hover {
+  background-image: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+}
+
+.navitem {
+  all: unset;
+  color: white;
+  font-weight: 700;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s;
+}
+.navitem:hover {
+  background-color: rgba(255, 255, 255, 0.3333333333);
+  color: white !important;
+}
+
+.sosmed-icon-nav {
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.sosmed-icon-nav:hover {
+  background-color: rgba(255, 255, 255, 0.3333333333);
+}
+.sosmed-icon-nav:hover.fb {
+  color: blue;
+}
+.sosmed-icon-nav:hover.ig {
+  color: rgb(179, 65, 179);
+}
+.sosmed-icon-nav:hover.tw {
+  color: rgb(0, 204, 255);
+}
+.sosmed-icon-nav:hover.wa {
+  color: rgb(2, 202, 62);
+}
+
+input.form-control {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ddd;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
