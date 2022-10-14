@@ -39,7 +39,10 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)-
             }
         );
         Route::get('cetak', [TransaksiController::class, 'cetakLaporan']);
+        Route::get('transaksi-all', [TransaksiController::class, 'getData']);
         Route::get('transaksi', [TransaksiController::class, 'index']);
+        Route::get('transaksi/{id}', [TransaksiController::class, 'detail']);
+        Route::post('transaksi/{id}/change-status', [TransaksiController::class, 'changeStatus']);
 
     }
 );

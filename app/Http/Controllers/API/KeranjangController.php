@@ -17,7 +17,7 @@ class KeranjangController
             return $this->create();
         }
 
-        $cart = Keranjang::with('barangs')->where([['user_id', '=', auth()->id()], ['transaksi_id',null]])->get();
+        $cart = Keranjang::with('barangs')->where([['user_id', '=', auth()->id()], ['transaksi_id', null]])->get();
 
         return $cart;
     }
@@ -49,12 +49,14 @@ class KeranjangController
 
     public function checkout()
     {
+
         $field = request()->validate(
             [
-                'nama'    => 'required',
-                'no_meja' => 'required',
+                'tanggal' => 'required',
             ]
         );
+
+        $date = new \DateTime($field['tanggal']);
 
         $keranjang   = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->get();
         $total       = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->sum('total');
@@ -62,8 +64,9 @@ class KeranjangController
         Arr::set($field, 'total', $total);
         Arr::set($field, 'user_id', auth()->id());
         Arr::set($field, 'no_transaksi', $notransaksi);
+        Arr::set($field, 'tanggal_pengiriman', $date->format('Y-m-d H:i:s'));
         $transaksi = new Transaksi();
-        $trans = $transaksi->create($field);
+        $trans     = $transaksi->create($field);
         foreach ($keranjang as $k) {
             $k->update(
                 [

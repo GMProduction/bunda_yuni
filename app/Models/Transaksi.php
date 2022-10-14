@@ -11,10 +11,11 @@ class Transaksi extends Model
 
     protected $fillable = [
         'nama',
-        'no_meja',
-        'total',
         'no_transaksi',
-        'user_id'
+        'user_id',
+        'status',
+        'total',
+        'tanggal_pengiriman'
     ];
 
     public function cart(){

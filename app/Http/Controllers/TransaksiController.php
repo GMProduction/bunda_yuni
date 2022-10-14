@@ -18,60 +18,30 @@ class TransaksiController extends Controller
         return view('admin.transaksi', ['sidebar' => 'transaksi', 'data' => $trans]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function getData(){
+        return Transaksi::with('user')->get();
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param $id
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function store(Request $request)
-    {
-        //
+    public function detail($id){
+        $trans = Transaksi::with(['user','cart.barangs'])->find($id);
+        return $trans;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function changeStatus($id){
+        $status = \request('status');
+
+        $transaksi = Transaksi::find($id);
+        $transaksi->update([
+            'status' => $status
+        ]);
+        return 'berhasil';
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
