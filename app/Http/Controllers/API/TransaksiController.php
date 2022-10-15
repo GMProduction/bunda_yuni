@@ -22,5 +22,21 @@ class TransaksiController extends Controller
         return $trans;
     }
 
+    public function terima($id){
+        $transaksi = Transaksi::find($id);
+
+        if ($transaksi == null){
+            return 'Pesanan tidak ditemukan';
+        }
+
+        if ($transaksi->status != 2 ) {
+            return 'Pesanan belum dikirim';
+        }
+        $transaksi->update([
+            'status' => 3
+        ]);
+        return 'berhasil';
+    }
+
 
 }
