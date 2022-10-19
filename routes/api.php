@@ -30,7 +30,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{id}', [\App\Http\Controllers\API\TransaksiController::class, 'detail']);
         Route::post('{id}/terima', [\App\Http\Controllers\API\TransaksiController::class, 'terima']);
     });
-    Route::match(['POST', 'GET'], 'absen', [\App\Http\Controllers\API\AbsensiController::class, 'index']);
+    Route::prefix('profile')->group(function (){
+        Route::match(['POST','GET'],'',[\App\Http\Controllers\API\ProfileController::class, 'index']);
+    });
+//    Route::match(['POST', 'GET'], 'absen', [\App\Http\Controllers\API\AbsensiController::class, 'index']);
 });
 
 Route::post('login', [\App\Http\Controllers\API\LoginController::class, 'login']);
