@@ -17,7 +17,7 @@ class Transaksi extends Model
         'total',
         'tanggal_pengiriman',
         'image',
-        'status'
+        'status_pembayaran'
     ];
 
     public function cart(){

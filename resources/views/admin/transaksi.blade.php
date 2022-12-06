@@ -19,10 +19,36 @@
                                 <th>Alamat</th>
                                 <th>Status Pesanan</th>
                                 <th>Total</th>
+                                <th>Status Pembayaran</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody id="tbTrans">
+                            @forelse($data as $key => $d)
+                                <tr>
+                                    <td>{{$d->tanggal_pengiriman}}</td>
+                                    <td>{{$d->user->nama}}</td>
+                                    <td>{{$d->user->alamat}}</td>
+                                    <td>{{$d->status == 1 ? 'Pesanan Diterima' : ($d->status == '2' ? 'Pesanan Dikirim' : ($d->status == '3' ? 'Selesai' : ($d->status == 6 ? 'Pesanan Ditolak' : 'Menunggu')))}}</td>
+                                    <td>{{number_format($d->total)}}</td>
+                                    {{--                                    <td>{{$d->status_pembayaran == 0 && $d->image ? 'Menunggu Konfirmasi' : ($d->status_pembayaran == 6 && $d->image == null ? 'Pembayaran Ditolak' : ($d->status_pembayaran == 0 && $d->image == null ? 'Menunggu Pembayaran' : $d->status_pembayran == 6 && ))}}</td>--}}
+                                    <td>@if($d->image)
+                                            @if($d->status_pembayaran == 0)
+                                                Menunggu Konfirmasi
+                                            @elseif($d->status_pembayaran == 1)
+                                                Pembayaran Diterima
+                                            @else
+                                                Menunggu Konfirmasi
+                                            @endif
+                                        @else
+                                            'Menunggu Pembayaran'
+                                        @endif
+
+                                    </td>
+                                    <td><a class="btn-utama sml rnd  " data-id="{{$d->id}}" style="display: unset" id="addData">Detail Pesanan</a></td>
+                                </tr>
+                            @empty
+                            @endforelse
 
                             </tbody>
 
@@ -58,7 +84,7 @@
                                     </div>
                                     <div class="isi">
                                         <div class="table">
-                                            <table id="table_barang" class="table table-striped" style="width:100%">
+                                            <table id="table_stock" class="table table-striped" style="width:100%">
                                                 <thead>
                                                 <tr>
                                                     <th>Nama Barang</th>
@@ -79,6 +105,22 @@
                                 </div>
                             </div>
                             <div class="col-6">
+                                <div class="panel">
+                                    <div class="title">
+                                        <p>Data Pembayaran</p>
+
+                                    </div>
+
+                                    <div class="isi">
+                                        <div id="formPem">
+                                            <div class="form-floating mb-3" id="imgPembayaran" style="width: 100px; height: 100px;">
+                                            </div>
+                                            <div style="display: flex; justify-content: end" id="btnPembayaran">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="panel">
                                     <div class="title">
                                         <p>Data Pelanggan</p>
@@ -133,9 +175,8 @@
         $(document).ready(function () {
             $('#table_id').DataTable();
             $('#table_barang').DataTable();
-            $('#table_stock').DataTable();
             $('.datepicker').datepicker();
-            getData()
+            // getData()
         });
 
         $(document).on('click', '#addData, #editData', function () {
@@ -147,35 +188,6 @@
         function createData() {
             saveData('Simpan Data', 'form', window.location.pathname)
             return false;
-        }
-
-        function getData() {
-            let tabel = $('#tbTrans');
-            tabel.empty();
-            $.get('/admin/transaksi-all', function (val, status, er) {
-                console.log(val)
-                $.each(val, function (k,v) {
-                    let status = v.status;
-                    let textStatus = 'Menunggu'
-                    if (status == 1){
-                        textStatus = 'Pesanan Diterima'
-                    }else if (status == 2){
-                        textStatus = 'Pesanan Dikirim'
-                    }else if(status == 3){
-                        textStatus = 'Selesai'
-                    }else if (status == 6){
-                        textStatus = 'Pesanan Ditolak'
-                    }
-                    tabel.append('<tr>' +
-                        '           <td>'+moment(v.tanggal_pengiriman).format('LLLL')+'</td>' +
-                        '           <td>'+v.user.nama+'</td>' +
-                        '           <td>'+v.user.alamat+'</td>' +
-                        '           <td>'+textStatus+'</td>' +
-                        '           <td>Rp. '+v.total.toLocaleString()+'</td>' +
-                        '           <td><a class="btn-utama sml rnd  " data-id="'+v.id+'" id="addData">Detail Pesanan</a></td>' +
-                        '          </tr>')
-                })
-            })
         }
 
         function detailTrans(id) {
@@ -191,27 +203,42 @@
                     $('#nohp').val(val.user.no_hp);
                     $('#tanggalKirim').html(moment(val.tanggal_pengiriman).format('LLLL'));
                     $('#totalharga').html(val.total.toLocaleString());
+                    $('#imgPembayaran').empty().html('<a href="' + val.image + '" target="_blank"><img src="' + val.image + '" id="" class="img-fluid" ></a>')
                     let btnHtlm = '<div style="display: flex">' +
-                        '<a  data-id="'+val.id+'" data-status="6"  class="btn-danger me-2 " id="btnStatus">Tolak</a>' +
-                        '<a  data-id="'+val.id+'" data-status="1"  class="btn-utama " id="btnStatus">Terima</a>' +
+                        '<a  data-id="' + val.id + '" data-status="6"  class="btn-danger me-2 " id="btnStatus">Tolak</a>' +
+                        '<a  data-id="' + val.id + '" data-status="1"  class="btn-utama " id="btnStatus">Terima</a>' +
                         '</div>'
-                    if(val.status == 1){
-                        btnHtlm = '<button type="button" data-id="'+val.id+'" data-status="2"  class="btn-success ms-auto" id="btnStatus">Kirim</button>\n'
-                    }else if (val.status == 2){
+                    if (val.status == 1) {
+                        btnHtlm = '<button type="button" data-id="' + val.id + '" data-status="2"  class="btn-success ms-auto" id="btnStatus">Kirim</button>\n'
+                    } else if (val.status == 2) {
                         btnHtlm = '<h4>Pesanan Dikirim</h4>'
-                    }else if (val.status == 3){
+                    } else if (val.status == 3) {
                         btnHtlm = '<h4>Selesai</h4>'
-                    }else if(val.status == 6){
+                    } else if (val.status == 6) {
                         btnHtlm = '<h4>Pesanan Ditolak</h4>'
                     }
-                    $('#buttonStatus').html(btnHtlm)
+                    if (val.status_pembayaran == 1) {
+                        $('#buttonStatus').html(btnHtlm)
+
+                    }
+
+                    let btnPembayaran = '<div style="display: flex">' +
+                        '<a  data-id="' + val.id + '" data-status="6"  class="btn-danger me-2 " id="btnStatusbayar">Tolak</a>' +
+                        '<a  data-id="' + val.id + '" data-status="1"  class="btn-utama " id="btnStatusbayar">Terima</a>' +
+                        '</div>';
+                    if (val.status_pembayaran == 0 || val.status_pembayaran == 6 && val.image) {
+                        $('#btnPembayaran').html(btnPembayaran);
+                    }
+                    if (val.status_pembayaran == 1) {
+                        $('#btnPembayaran').html('<span class="fw-bold">Pembayaran diterima</span>');
+                    }
                     $.each(val.cart, function (k, v) {
                         tabel.append('<tr>' +
-                            '           <td>'+v.barangs.nama+'</td>' +
-                            '           <td>'+v.barangs.kategori+'</td>' +
-                            '           <td>'+v.qty+'</td>' +
-                            '           <td>'+v.harga.toLocaleString()+'</td>' +
-                            '           <td>'+v.total.toLocaleString()+'</td>' +
+                            '           <td>' + v.barangs.nama + '</td>' +
+                            '           <td>' + v.barangs.kategori + '</td>' +
+                            '           <td>' + v.qty + '</td>' +
+                            '           <td>' + v.harga.toLocaleString() + '</td>' +
+                            '           <td>' + v.total.toLocaleString() + '</td>' +
                             '          </tr>')
                     })
                 }
@@ -219,20 +246,35 @@
         }
 
         $(document).on('click', '#btnStatus', function () {
-            console.log()
             let id = $(this).data('id');
             let status = $(this).data('status');
             let data = {
                 _token: '{{csrf_token()}}',
                 status: status
             }
-            $.post(window.location.pathname+'/'+id+'/change-status', data, function (val,status,er) {
+            $.post(window.location.pathname + '/' + id + '/change-status', data, function (val, status, er) {
                 console.log(val);
                 console.log(status);
                 console.log(er);
-                if (er.status == 200){
-                    detailTrans(id)
-                    getData()
+                if (er.status == 200) {
+                    window.location.reload();
+                }
+            })
+        })
+
+        $(document).on('click', '#btnStatusbayar', function () {
+            let id = $(this).data('id');
+            let status = $(this).data('status');
+            let data = {
+                _token: '{{csrf_token()}}',
+                status: status
+            }
+            $.post(window.location.pathname + '/' + id + '/change-status-payment', data, function (val, status, er) {
+                console.log(val);
+                console.log(status);
+                console.log(er);
+                if (er.status == 200) {
+                    window.location.reload();
                 }
             })
         })

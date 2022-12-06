@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 
 class TransaksiController extends Controller
@@ -14,7 +15,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $trans = Transaksi::with('user')->get();
+        $trans = Transaksi::with(['user'])->get();
         return view('admin.transaksi', ['sidebar' => 'transaksi', 'data' => $trans]);
     }
 
@@ -39,6 +40,26 @@ class TransaksiController extends Controller
         $transaksi->update([
             'status' => $status
         ]);
+        return 'berhasil';
+    }
+
+    public function changeStatusPayment($id){
+        $status = \request('status');
+
+        $transaksi = Transaksi::findOrFail($id);
+        $field = [
+            'status_pembayaran' => $status
+        ];
+        if ($status == 6){
+            $image = $transaksi->image;
+            if ($image && file_exists(public_path().$image)){
+                unlink(public_path().$image);
+            }
+
+            Arr::set($field, 'image',null);
+        }
+
+        $transaksi->update($field);
         return 'berhasil';
     }
 

@@ -43,6 +43,7 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)-
         Route::get('transaksi', [TransaksiController::class, 'index']);
         Route::get('transaksi/{id}', [TransaksiController::class, 'detail']);
         Route::post('transaksi/{id}/change-status', [TransaksiController::class, 'changeStatus']);
+        Route::post('transaksi/{id}/change-status-payment', [TransaksiController::class, 'changeStatusPayment']);
 
     }
 );
