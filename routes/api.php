@@ -29,6 +29,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('', [\App\Http\Controllers\API\TransaksiController::class, 'index']);
         Route::get('{id}', [\App\Http\Controllers\API\TransaksiController::class, 'detail']);
         Route::post('{id}/terima', [\App\Http\Controllers\API\TransaksiController::class, 'terima']);
+        Route::post('{id}/upload-image', [\App\Http\Controllers\API\TransaksiController::class, 'uploadImg']);
+
     });
     Route::prefix('profile')->group(function (){
         Route::match(['POST','GET'],'',[\App\Http\Controllers\API\ProfileController::class, 'index']);

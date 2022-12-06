@@ -15,7 +15,9 @@ class Transaksi extends Model
         'user_id',
         'status',
         'total',
-        'tanggal_pengiriman'
+        'tanggal_pengiriman',
+        'image',
+        'status'
     ];
 
     public function cart(){
