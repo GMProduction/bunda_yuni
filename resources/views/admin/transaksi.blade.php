@@ -205,8 +205,8 @@
                     $('#totalharga').html(val.total.toLocaleString());
                     $('#imgPembayaran').empty().html('<a href="' + val.image + '" target="_blank"><img src="' + val.image + '" id="" class="img-fluid" ></a>')
                     let btnHtlm = '<div style="display: flex">' +
-                        '<a  data-id="' + val.id + '" data-status="6"  class="btn-danger me-2 " id="btnStatus">Tolak</a>' +
-                        '<a  data-id="' + val.id + '" data-status="1"  class="btn-utama " id="btnStatus">Terima</a>' +
+                        '<a  data-id="' + val.id + '" data-pem="99" data-status="6"  class="btn-danger me-2 " id="btnStatus">Tolak</a>' +
+                        '<a  data-id="' + val.id + '" data-pem="99" data-status="1"  class="btn-utama " id="btnStatus">Terima</a>' +
                         '</div>'
                     if (val.status == 1) {
                         btnHtlm = '<button type="button" data-pem="'+val.status_pembayaran+'" data-id="' + val.id + '" data-status="2"  class="btn-success ms-auto" id="btnStatus">Kirim</button>\n'
@@ -250,7 +250,7 @@
             let id = $(this).data('id');
             let status = $(this).data('status');
             let pem = $(this).data('pem');
-            if (pem != 1){
+            if (pem == 0 || pem == 6){
                 swal("menunggu konfirmasi pembayaran", {
                     icon: "warning",
                     buttons: false,
@@ -259,6 +259,7 @@
                 return false;
 
             }
+
             let data = {
                 _token: '{{csrf_token()}}',
                 status: status
