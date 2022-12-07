@@ -27,7 +27,7 @@ class KeranjangController
         $field = request()->validate(
             [
                 'qty'       => 'required',
-                'barang_id' => 'required|exist',
+                'barang_id' => 'required|exists:barangs,id',
                 'harga'     => 'required',
             ]
         );
