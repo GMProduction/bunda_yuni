@@ -41,7 +41,7 @@
                                                 Menunggu Konfirmasi
                                             @endif
                                         @else
-                                            'Menunggu Pembayaran'
+                                            Menunggu Pembayaran
                                         @endif
 
                                     </td>
@@ -209,7 +209,7 @@
                         '<a  data-id="' + val.id + '" data-status="1"  class="btn-utama " id="btnStatus">Terima</a>' +
                         '</div>'
                     if (val.status == 1) {
-                        btnHtlm = '<button type="button" data-id="' + val.id + '" data-status="2"  class="btn-success ms-auto" id="btnStatus">Kirim</button>\n'
+                        btnHtlm = '<button type="button" data-pem="'+val.status_pembayaran+'" data-id="' + val.id + '" data-status="2"  class="btn-success ms-auto" id="btnStatus">Kirim</button>\n'
                     } else if (val.status == 2) {
                         btnHtlm = '<h4>Pesanan Dikirim</h4>'
                     } else if (val.status == 3) {
@@ -217,17 +217,18 @@
                     } else if (val.status == 6) {
                         btnHtlm = '<h4>Pesanan Ditolak</h4>'
                     }
-                    if (val.status_pembayaran == 1) {
-                        $('#buttonStatus').html(btnHtlm)
 
-                    }
+                    $('#buttonStatus').html(btnHtlm)
+
 
                     let btnPembayaran = '<div style="display: flex">' +
                         '<a  data-id="' + val.id + '" data-status="6"  class="btn-danger me-2 " id="btnStatusbayar">Tolak</a>' +
                         '<a  data-id="' + val.id + '" data-status="1"  class="btn-utama " id="btnStatusbayar">Terima</a>' +
                         '</div>';
-                    if (val.status_pembayaran == 0 || val.status_pembayaran == 6 && val.image) {
-                        $('#btnPembayaran').html(btnPembayaran);
+                    if (val.status_pembayaran == 0 || val.status_pembayaran == 6) {
+                        if (val.image){
+                            $('#btnPembayaran').html(btnPembayaran);
+                        }
                     }
                     if (val.status_pembayaran == 1) {
                         $('#btnPembayaran').html('<span class="fw-bold">Pembayaran diterima</span>');
@@ -248,6 +249,16 @@
         $(document).on('click', '#btnStatus', function () {
             let id = $(this).data('id');
             let status = $(this).data('status');
+            let pem = $(this).data('pem');
+            if (pem != 1){
+                swal("menunggu konfirmasi pembayaran", {
+                    icon: "warning",
+                    buttons: false,
+                    timer: 1000
+                })
+                return false;
+
+            }
             let data = {
                 _token: '{{csrf_token()}}',
                 status: status
