@@ -118,6 +118,7 @@ class CustomController extends Controller
     public function uploadImage($field, $targetName = '', $disk = 'upload')
     {
         $file = \request()->file($field);
+
         return Storage::disk($disk)->put($targetName, File::get($file));
     }
 
