@@ -42,7 +42,7 @@ class BarangController extends CustomController
             $image     = $this->generateImageName('image');
             $stringImg = '/images/barang/'.$image;
             // $this->uploadImage('image', $image, 'imageBarang');
-            $foto->move(public_path('images'), $image);
+            $foto->move(public_path('/images/barang/'), $image);
             Arr::set($field, 'image', $stringImg);
         }
         if (\request('description')){
