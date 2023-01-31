@@ -13,6 +13,7 @@ class Barang extends Model
         'image',
         'harga',
         'kategori',
+        'description'
     ];
 
     public function scopeFilter($query, $filter)

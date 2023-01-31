@@ -53,11 +53,11 @@ class KeranjangController
         $field = request()->validate(
             [
                 'tanggal' => 'required',
+                'jam' => 'required'
             ]
         );
 
-        $date = new \DateTime($field['tanggal']);
-
+        $date = new \DateTime($field['tanggal'].' '.$field['jam']);
         $keranjang   = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->get();
         $total       = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->sum('total');
         $notransaksi = \date('ymdhis').auth()->id();

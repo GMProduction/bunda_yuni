@@ -19,6 +19,7 @@
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
+                                <th>Deskripsi</th>
                                 <th>Foto</th>
                                 <th>Harga</th>
                                 <th>Action</th>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td>{{$d->nama}}</td>
                                     <td>{{$d->kategori}}</td>
+                                    <td>{{$d->description}}</td>
                                     <td><img class="" src="{{ asset($d->image) }}"/></td>
                                     <td>{{number_format($d->harga,'0')}}</td>
                                     <td class="">
@@ -85,6 +87,11 @@
                             <option value="Minuman">Minuman</option>
                             <option value="Snack">Snack</option>
                         </select>
+                        <div class="form-floating mb-3">
+                            <textarea type="text" class="form-control textForm" id="description" name="description"
+                                      placeholder="Deskripsi Barang"></textarea>
+                            <label for="namabarang" class="form-label">Deskripsi Barang</label>
+                        </div>
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control textForm" id="harga" name="harga"
                                    placeholder="harga">

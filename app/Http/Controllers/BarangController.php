@@ -44,6 +44,10 @@ class BarangController extends CustomController
             $this->uploadImage('image', $image, 'imageBarang');
             Arr::set($field, 'image', $stringImg);
         }
+        if (\request('description')){
+            Arr::set($field, 'description', \request('description'));
+
+        }
         if (\request('id')) {
             $barang = Barang::find(\request('id'));
             $barang->update($field);
