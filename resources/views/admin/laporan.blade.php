@@ -171,13 +171,7 @@
             } else if (awal === '' && akhir === '') {
                 $(this).attr('href', '/admin/cetak' + param).attr('target', '_black');
             }
-            // else {
-            //     swal("Silahkan masukkan tanggal awal dan tanggal akhir atau kosongkan keduanya untuk menampilkan semua data ", {
-            //         icon: "warning",
-            //         buttons: false,
-            //         timer: 3000
-            //     })
-            // }
+
         })
     </script>
 @endsection
