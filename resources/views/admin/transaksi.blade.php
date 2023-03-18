@@ -27,8 +27,8 @@
                             @forelse($data as $key => $d)
                                 <tr>
                                     <td>{{$d->tanggal_pengiriman}}</td>
-                                    <td>{{$d->user->nama}}</td>
-                                    <td>{{$d->user->alamat}}</td>
+                                    <td>{{$d->user_all->nama}}</td>
+                                    <td>{{$d->user_all->alamat}}</td>
                                     <td>{{$d->status == 1 ? 'Pesanan Diterima' : ($d->status == '2' ? 'Pesanan Dikirim' : ($d->status == '3' ? 'Selesai' : ($d->status == 6 ? 'Pesanan Ditolak' : 'Menunggu')))}}</td>
                                     <td>{{number_format($d->total)}}</td>
                                     {{--                                    <td>{{$d->status_pembayaran == 0 && $d->image ? 'Menunggu Konfirmasi' : ($d->status_pembayaran == 6 && $d->image == null ? 'Pembayaran Ditolak' : ($d->status_pembayaran == 0 && $d->image == null ? 'Menunggu Pembayaran' : $d->status_pembayran == 6 && ))}}</td>--}}
@@ -198,9 +198,9 @@
                 if (er.status == 200) {
                     console.log(val)
 
-                    $('#namapel').val(val.user.nama);
-                    $('#alamat').val(val.user.alamat);
-                    $('#nohp').val(val.user.no_hp);
+                    $('#namapel').val(val.user_all.nama);
+                    $('#alamat').val(val.user_all.alamat);
+                    $('#nohp').val(val.user_all.no_hp);
                     $('#tanggalKirim').html(moment(val.tanggal_pengiriman).format('LLLL'));
                     $('#totalharga').html(val.total.toLocaleString());
                     $('#imgPembayaran').empty().html('<a href="' + val.image + '" target="_blank"><img src="' + val.image + '" id="" class="img-fluid" ></a>')
@@ -234,9 +234,10 @@
                         $('#btnPembayaran').html('<span class="fw-bold">Pembayaran diterima</span>');
                     }
                     $.each(val.cart, function (k, v) {
+                        console.log(v)
                         tabel.append('<tr>' +
-                            '           <td>' + v.barangs.nama + '</td>' +
-                            '           <td>' + v.barangs.kategori + '</td>' +
+                            '           <td>' + v.barangs_all.nama + '</td>' +
+                            '           <td>' + v.barangs_all.kategori + '</td>' +
                             '           <td>' + v.qty + '</td>' +
                             '           <td>' + v.harga.toLocaleString() + '</td>' +
                             '           <td>' + v.total.toLocaleString() + '</td>' +

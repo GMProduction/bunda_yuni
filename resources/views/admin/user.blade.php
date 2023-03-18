@@ -32,7 +32,7 @@
                             <td class="d-flex">
                                 <a class="btn-success sml rnd me-1" id="editData" data-row="{{$u}}">Edit <i
                                         class="material-icons menu-icon ms-2">edit</i></a>
-                                <a class="btn-danger sml rnd ">Hapus <i
+                                <a class="btn-danger sml rnd " data-id="{{$u->id}}" data-name="{{$u->nama}}" id="deleteData">Hapus <i
                                         class="material-icons menu-icon ms-2">delete</i></a>
                             </td>
                         </tr>
@@ -145,6 +145,16 @@
         function afterSave() {
 
         }
+
+        $(document).on('click','#deleteData', function () {
+            let id = $(this).data('id');
+            let nama = $(this).data('name');
+            let data = {
+                '_token' : '{{csrf_token()}}'
+            }
+            deleteData(nama, window.location.pathname+'/user/destroy/'+id, data)
+            return false;
+        })
     </script>
 @endsection
 

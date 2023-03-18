@@ -14,7 +14,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $trans = Transaksi::with('user');
+        $trans = Transaksi::with('user_all');
         $start = \request('start');
         $end = \request('end');
         if (\request('start')){

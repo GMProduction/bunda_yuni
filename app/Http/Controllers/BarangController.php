@@ -109,14 +109,15 @@ class BarangController extends CustomController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param $id
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function destroy($id)
     {
         //
+        Barang::destroy($id);
+        return 'success';
     }
+
 }

@@ -21,4 +21,8 @@ class Keranjang extends Model
     public function barangs(){
         return $this->belongsTo(Barang::class,'barang_id');
     }
+
+    public function barangs_all(){
+        return $this->belongsTo(Barang::class,'barang_id')->withTrashed();
+    }
 }

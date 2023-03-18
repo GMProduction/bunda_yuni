@@ -15,12 +15,12 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $trans = Transaksi::with(['user'])->get();
+        $trans = Transaksi::with(['user_all'])->get();
         return view('admin.transaksi', ['sidebar' => 'transaksi', 'data' => $trans]);
     }
 
     public function getData(){
-        return Transaksi::with('user')->get();
+        return Transaksi::with('user_all')->get();
     }
 
     /**
@@ -29,7 +29,7 @@ class TransaksiController extends Controller
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function detail($id){
-        $trans = Transaksi::with(['user','cart.barangs'])->find($id);
+        $trans = Transaksi::with(['user_all','cart.barangs_all'])->find($id);
         return $trans;
     }
 

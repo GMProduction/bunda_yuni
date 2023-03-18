@@ -19,7 +19,13 @@ class KeranjangController
 
         $cart = Keranjang::with('barangs')->where([['user_id', '=', auth()->id()], ['transaksi_id', null]])->get();
 
-        return $cart;
+        $data = [];
+        foreach ($cart as $c){
+            if ($c->barangs){
+                $data[] = $c;
+            }
+        }
+        return $data;
     }
 
     public function create()
@@ -28,7 +34,7 @@ class KeranjangController
             [
                 'qty'       => 'required',
                 'barang_id' => 'required|exists:barangs,id',
-                'harga'     => 'required',
+                    'harga'     => 'required',
             ]
         );
 
@@ -58,8 +64,16 @@ class KeranjangController
         );
 
         $date = new \DateTime($field['tanggal'].' '.$field['jam']);
-        $keranjang   = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->get();
+        $keranjang   = Keranjang::with('barangs_all')->where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->get();
+
+        foreach ($keranjang as $k){
+            if ($k->barangs_all->deleted_at != null){
+                Keranjang::destroy($k->id);
+            }
+        }
+
         $total       = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->sum('total');
+
         $notransaksi = \date('ymdhis').auth()->id();
         Arr::set($field, 'total', $total);
         Arr::set($field, 'user_id', auth()->id());

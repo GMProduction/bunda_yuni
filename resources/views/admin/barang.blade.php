@@ -37,7 +37,7 @@
                                         <div class="d-flex">
                                             <a class="btn-success sml rnd me-1" data-row="{{$d}}" id="editData">Edit <i
                                                     class="material-icons menu-icon ms-2">edit</i></a>
-                                            <a class="btn-danger sml rnd ">Hapus<i
+                                            <a class="btn-danger sml rnd " data-id="{{$d->id}}" data-name="{{$d->nama}}" id="deleteData">Hapus<i
                                                     class="material-icons menu-icon ms-2">delete</i></a>
                                         </div>
                                     </td>
@@ -191,6 +191,19 @@
             saveData('Simpan Data', 'form', window.location.pathname)
             return false;
         }
+
+        $(document).on('click','#deleteData', function () {
+            let id = $(this).data('id');
+            let nama = $(this).data('name');
+            let data = {
+                '_token' : '{{csrf_token()}}'
+            }
+            deleteData(nama, window.location.pathname+'/destroy/'+id, data)
+            return false;
+        })
+
+
+
     </script>
 @endsection
 

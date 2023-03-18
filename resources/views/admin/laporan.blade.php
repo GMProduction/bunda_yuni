@@ -45,7 +45,7 @@
                                     <td>{{$d->no_transaksi}}</td>
                                     <td>{{date_format($d->created_at,'Y M d')}}</td>
                                     <td>{{number_format($d->total)}}</td>
-                                    <td>{{$d->user->nama}}</td>
+                                    <td>{{$d->user_all->nama}}</td>
                                 </tr>
                             @empty
                                 <tr>

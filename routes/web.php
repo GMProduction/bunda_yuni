@@ -27,9 +27,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)->group(
     function () {
         Route::match(['POST', 'GET'], '', [UserController::class, 'index']);
+        Route::post('user/destroy/{id}', [UserController::class,'destroy']);
         Route::prefix('barang')->group(
             function () {
                 Route::match(['POST', 'GET'], '', [BarangController::class, 'index']);
+                Route::post('destroy/{id}', [BarangController::class,'destroy'])->name('destroyBarang');
             }
         );
         Route::prefix('laporan')->group(

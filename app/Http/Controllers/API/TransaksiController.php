@@ -21,8 +21,7 @@ class TransaksiController extends CustomController
 
     public function detail($id)
     {
-        $trans = Transaksi::with('cart.barangs')->find($id);
-
+        $trans = Transaksi::with('cart.barangs_all')->find($id);
         return $trans;
     }
 
@@ -56,9 +55,11 @@ class TransaksiController extends CustomController
 
         $transaksi = Transaksi::findOrFail($id);
         if ($transaksi->status != 1) {
-            return response()->json([
-                'message' => 'Pesanan tidak ditemukan'
-            ]);
+            return response()->json(
+                [
+                    'message' => 'Pesanan tidak ditemukan',
+                ]
+            );
         }
 
         $image     = $this->generateImageName('image');
