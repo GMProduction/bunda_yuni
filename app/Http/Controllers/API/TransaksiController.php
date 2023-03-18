@@ -64,7 +64,8 @@ class TransaksiController extends CustomController
 
         $image     = $this->generateImageName('image');
         $stringImg = '/images/pembayaran/'.$image;
-        $this->uploadImage('image', $image, 'imagePembayaran');
+        \request()->$image->move(public_path('/images/pembayaran/'), $image);
+        // $this->uploadImage('image', $image, 'imagePembayaran');
         Arr::set($field, 'image', $stringImg);
 
         $transaksi->update(
