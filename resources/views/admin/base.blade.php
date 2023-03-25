@@ -32,7 +32,7 @@
             </a>
 
             <p class="title">
-                Katering Bunda Yuni
+                Katering Mbak Endang
             </p>
         </div>
 
