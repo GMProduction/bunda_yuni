@@ -41,13 +41,13 @@
         </p>
 
         <div class="header-panel-kanan">
-            <a class="profil dropdown-toggle" href="#" role="button" id="dropdownprofile" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <a class="profil dropdown-toggle" href="#" role="button" id="dropdownprofile"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset('images/local/nobody.png') }}" />
             </a>
 
             <ul class="dropdown-menu custom" aria-labelledby="dropdownprofile">
-                <li><a class="dropdown-item disabled" href="#">{{auth()->user()->nama}}</a></li>
+                <li><a class="dropdown-item disabled" href="#">{{ auth()->user()->nama }}</a></li>
                 <hr>
                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
             </ul>
@@ -114,7 +114,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu @if ($sidebar == 'transaksi') active @endif" href="/admin/transaksi">
                         <i class="material-icons menu-icon">assignment</i>
-                        <p class="menu-text">Tranasksi</p>
+                        <p class="menu-text">Transaksi</p>
                     </a>
                 </li>
 
