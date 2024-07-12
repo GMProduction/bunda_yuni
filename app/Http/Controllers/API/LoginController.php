@@ -19,7 +19,7 @@ class LoginController extends Controller
         );
         $user  = User::where('username', '=', $field['username'])->first();
 
-        if ( ! $user || ! Hash::check($field['password'], $user->password)) {
+        if (!$user || !Hash::check($field['password'], $user->password)) {
             return response()->json(
                 [
                     'msg' => 'Login gagal',
@@ -52,13 +52,13 @@ class LoginController extends Controller
             [
                 'username' => 'required',
                 'nama'     => 'required',
-                'password' => 'required|confirmed',
+                'password' => 'required',
                 'alamat'   => 'required',
                 'no_hp'    => 'required',
                 'role'     => 'required',
             ]
         );
-        if ( ! \request('id')) {
+        if (!\request('id')) {
             $user1 = User::where('username', '=', $field['username'])->first();
             if ($user1) {
                 return response()->json(
@@ -96,7 +96,5 @@ class LoginController extends Controller
         $user->update($field);
 
         return 'berhasil';
-
     }
-
 }

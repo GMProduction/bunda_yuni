@@ -27,11 +27,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)->group(
     function () {
         Route::match(['POST', 'GET'], '', [UserController::class, 'index']);
-        Route::post('user/destroy/{id}', [UserController::class,'destroy']);
+        Route::post('user/destroy/{id}', [UserController::class, 'destroy']);
         Route::prefix('barang')->group(
             function () {
                 Route::match(['POST', 'GET'], '', [BarangController::class, 'index']);
-                Route::post('destroy/{id}', [BarangController::class,'destroy'])->name('destroyBarang');
+                Route::post('destroy/{id}', [BarangController::class, 'destroy'])->name('destroyBarang');
             }
         );
         Route::prefix('laporan')->group(
@@ -46,9 +46,8 @@ Route::prefix('admin')->middleware(\App\Http\Middleware\AdminMiddleware::class)-
         Route::get('transaksi/{id}', [TransaksiController::class, 'detail']);
         Route::post('transaksi/{id}/change-status', [TransaksiController::class, 'changeStatus']);
         Route::post('transaksi/{id}/change-status-payment', [TransaksiController::class, 'changeStatusPayment']);
-
     }
 );
 
-Route::match(['POST','GET'],'/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::match(['POST', 'GET'], '/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::get('logout', [LoginController::class, 'logout'])->middleware('auth');
