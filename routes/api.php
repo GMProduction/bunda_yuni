@@ -24,18 +24,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('cart')->group(function () {
         Route::match(['POST', 'GET'], '', [\App\Http\Controllers\API\KeranjangController::class, 'index']);
         Route::post('checkout', [\App\Http\Controllers\API\KeranjangController::class, 'checkout']);
+        Route::delete('{id}', [\App\Http\Controllers\API\KeranjangController::class, 'destroy']);
     });
     Route::prefix('transaction')->group(function () {
         Route::get('', [\App\Http\Controllers\API\TransaksiController::class, 'index']);
         Route::get('{id}', [\App\Http\Controllers\API\TransaksiController::class, 'detail']);
         Route::post('{id}/terima', [\App\Http\Controllers\API\TransaksiController::class, 'terima']);
         Route::post('{id}/upload-image', [\App\Http\Controllers\API\TransaksiController::class, 'uploadImg']);
-
     });
-    Route::prefix('profile')->group(function (){
-        Route::match(['POST','GET'],'',[\App\Http\Controllers\API\ProfileController::class, 'index']);
+    Route::prefix('profile')->group(function () {
+        Route::match(['POST', 'GET'], '', [\App\Http\Controllers\API\ProfileController::class, 'index']);
     });
-//    Route::match(['POST', 'GET'], 'absen', [\App\Http\Controllers\API\AbsensiController::class, 'index']);
+    //    Route::match(['POST', 'GET'], 'absen', [\App\Http\Controllers\API\AbsensiController::class, 'index']);
 });
 
 Route::post('login', [\App\Http\Controllers\API\LoginController::class, 'login']);

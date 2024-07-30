@@ -16,7 +16,7 @@ class TransaksiController extends CustomController
      */
     public function index()
     {
-        return Transaksi::where('user_id', '=', auth()->id())->get();
+        return Transaksi::where('user_id', '=', auth()->id())->orderby('created_at', 'desc')->get();
     }
 
     public function detail($id)

@@ -20,8 +20,8 @@ class KeranjangController
         $cart = Keranjang::with('barangs')->where([['user_id', '=', auth()->id()], ['transaksi_id', null]])->get();
 
         $data = [];
-        foreach ($cart as $c){
-            if ($c->barangs){
+        foreach ($cart as $c) {
+            if ($c->barangs) {
                 $data[] = $c;
             }
         }
@@ -34,7 +34,7 @@ class KeranjangController
             [
                 'qty'       => 'required',
                 'barang_id' => 'required|exists:barangs,id',
-                    'harga'     => 'required',
+                'harga'     => 'required',
             ]
         );
 
@@ -63,18 +63,18 @@ class KeranjangController
             ]
         );
 
-        $date = new \DateTime($field['tanggal'].' '.$field['jam']);
+        $date = new \DateTime($field['tanggal'] . ' ' . $field['jam']);
         $keranjang   = Keranjang::with('barangs_all')->where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->get();
 
-        foreach ($keranjang as $k){
-            if ($k->barangs_all->deleted_at != null){
+        foreach ($keranjang as $k) {
+            if ($k->barangs_all->deleted_at != null) {
                 Keranjang::destroy($k->id);
             }
         }
 
         $total       = Keranjang::where([['user_id', '=', auth()->id()], ['transaksi_id', '=', null]])->sum('total');
 
-        $notransaksi = \date('ymdhis').auth()->id();
+        $notransaksi = \date('ymdhis') . auth()->id();
         Arr::set($field, 'total', $total);
         Arr::set($field, 'user_id', auth()->id());
         Arr::set($field, 'no_transaksi', $notransaksi);
@@ -92,4 +92,27 @@ class KeranjangController
         return 'berhasil';
     }
 
+
+    public function destroy($id)
+    {
+        try {
+            $cartItem = Keranjang::where('id', $id)->first();
+
+            if (!$cartItem) {
+                return response()->json([
+                    'message' => 'Item not found in the cart'
+                ], 404);
+            }
+
+            $cartItem->delete();
+
+            return response()->json([
+                'message' => 'Item removed from the cart successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while removing the item'
+            ], 500);
+        }
+    }
 }
